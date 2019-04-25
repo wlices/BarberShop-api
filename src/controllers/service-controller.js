@@ -1,4 +1,4 @@
-repository = require('../repositories/service-repository')
+const repository = require('../repositories/service-repository')
 
 exports.getAll = async (req, res) => {
 
