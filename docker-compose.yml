@@ -1,0 +1,22 @@
+version: '2'
+
+# Define the services/containers to be run
+services:
+  barbershop_api_app: #name of your service
+    build: ./ # specify the directory of the Dockerfile
+    ports:
+      - "3000:3000" #specify ports forwarding,
+      # - "9229:9229"
+    links:
+      - barbershop_api_db # link this service to the database service
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - barbershop_api_db
+    # command:
+    #   - node
+    #   - "--inspect-brk=0.0.0.0"
+    #   - "."
+      
+  barbershop_api_db: # name of the service
+    image: mongo # specify image to build container from
