@@ -47,7 +47,7 @@ exports.put = async (req, res) => {
 exports.post = async (req, res) => {
     try {
         await repository.post({
-            name: req.body.nome,
+            name: req.body.name,
             price: req.body.price,
             description: req.body.description
         })
@@ -55,7 +55,6 @@ exports.post = async (req, res) => {
             message: 'Serviço cadastrado com sucesso!'
         });
     } catch (e) {
-        console.log(e);
         res.status(500).send({
             message: 'Erro! Falha no processamento da requisição'
         })

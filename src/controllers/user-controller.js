@@ -31,7 +31,7 @@ exports.getById = async (req, res) => {
 exports.post = async(req, res, next) => {
     try {
         await repository.create({
-            name: req.body.name,
+            name: req.body.name !== null ? req.body.name : "",
             email: req.body.email,
             password: req.body.password
         })

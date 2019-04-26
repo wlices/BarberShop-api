@@ -5,7 +5,7 @@
       "args"            : [],
       "log_date_format" : "DD-MM-YYYY HH:mm Z",
       "out_file"        : "out.log",
-      "watch"           : true,
+      "watch"           : false,
       "node_args"       : "",
       "merge_logs"      : false,
       "cwd"             : "./",

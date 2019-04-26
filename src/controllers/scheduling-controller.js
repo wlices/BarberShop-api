@@ -16,7 +16,8 @@ exports.getAll = async (req, res, next) => {
 }
 
 exports.post = async (req, res, next) => {
-    if (service.checkDate(req.body.start_time, req.body.end_time)) {
+    let schedule = await service.checkDate(req.body.start_time, req.body.end_time)
+    if (schedule) {
         try {
             await repository.create({
                 customer: req.body.customer,
@@ -83,6 +84,19 @@ exports.put = async (req, res) => {
     } catch (e) {
         res.status(500).send({
             message: 'Falha ao remover agendamento'
+        })
+    }
+}
+
+exports.delete = async(req, res, next) => {
+    try {
+        await repository.delete(req.body.id)
+        res.status(200).send({
+            message: 'Agendamento removido com sucesso!'
+        })
+    } catch (e) {
+        res.status(500).send({
+            message: 'Erro! Falha no processamento da requisição'
         })
     }
 }

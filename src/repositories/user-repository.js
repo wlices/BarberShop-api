@@ -7,12 +7,18 @@ exports.create = async(data) => {
 }
 
 exports.put =  async (id, data) => {
+    let putData = {}
+    if (data.name !== null) {
+        putData.name = data.name
+    }
+    if (data.password !== null) {
+        putData.password = data.password
+    }
+    if (data.email !== null) {
+        putData.email = data.email
+    }
     await User.findByIdAndUpdate(id, {
-        $set:{
-            name : data.name,
-            password : data.password,
-            email : data.email
-        }
+        $set:putData
     })
 }
 

@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/service-controller')
+const controller = require('../controllers/scheduling-controller')
+const authService = require('../services/auth-service')
 
-router.get('/', controller.getAll)
-router.get('/:scheduleId', controller.getById)
-router.put('/:schedulerId',controller.put)
-router.delete('/:scheduleId', controller.delete)
-router.post('/', controller.post)
-
+router.get('/', authService.authorize, controller.getAll)
+router.get('/:scheduleId', authService.authorize, controller.getById)
+router.put('/:schedulerId', authService.authorize, controller.put)
+router.delete('/:scheduleId', authService.authorize, controller.delete)
+router.post('/', authService.authorize, controller.post)
 
 module.exports = router;
