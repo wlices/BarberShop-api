@@ -1,4 +1,5 @@
 let express = require('express')
+var cors = require('cors')
 let app = express()
 let bodyParser = require('body-parser')
 let mongoose = require('mongoose')
@@ -14,6 +15,7 @@ mongoose.connect(config.connectionString);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(cors())
 
 let port = process.env.port || 3000;
 
