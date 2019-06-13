@@ -1,5 +1,4 @@
 const repository = require('../repositories/user-repository')
-const authService = require('../services/auth-service')
 
 exports.get = async(req, res, next) => {
     try {
@@ -69,43 +68,6 @@ exports.delete = async(req, res, next) => {
             message: 'Usuário removido com sucesso!'
         })
     } catch (e) {
-        res.status(500).send({
-            message: 'Erro! Falha no processamento da requisição'
-        })
-    }
-}
-
-
-exports.authenticate = async(req, res, next) => {
-    try {
-        const user = await repository.authenticate({
-            email:req.body.email,
-            password:req.body.password
-        })
-
-        if(!user){
-            res.status(404).send({
-                message: 'Usuário ou senha inválidos'
-            })
-            return;
-        }
-
-        const token = await authService.generateToken({
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            roles: user.roles
-        })
-
-        res.status(201).send({
-            token: token,
-            data:{
-                email:user.email,
-                name:user.name
-            }
-        });
-
-    } catch (error) {
         res.status(500).send({
             message: 'Erro! Falha no processamento da requisição'
         })
